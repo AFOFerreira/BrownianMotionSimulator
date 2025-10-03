@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BrownianMotionSimulator.View.Pages.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="RootPage"
+    Title="Simulador Browniano">
+
+    <ScrollView>
+        <Grid
+            Padding="16"
+            RowDefinitions="Auto,*"
+            RowSpacing="12">
+
+            <ScrollView Grid.Row="0">
+                <VerticalStackLayout Spacing="0">
+
+                    <Grid
+                        x:Name="ParamsWide"
+                        ColumnDefinitions="Auto,*"
+                        ColumnSpacing="8"
+                        RowSpacing="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Text="Preço inicial"
+                            VerticalTextAlignment="Center" />
+                        <HorizontalStackLayout
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Spacing="8">
+                            <Entry
+                                Keyboard="Numeric"
+                                Text="{Binding InitialPrice, Mode=TwoWay}"
+                                WidthRequest="120" />
+                            <Slider
+                                Maximum="10000"
+                                Minimum="1"
+                                Value="{Binding InitialPrice, Mode=TwoWay}" />
+                        </HorizontalStackLayout>
+
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Text="Volatilidade média (%)"
+                            VerticalTextAlignment="Center" />
+                        <HorizontalStackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Spacing="8">
+                            <Entry
+                                Keyboard="Numeric"
+                                Placeholder="ex: 2 = 2%"
+                                Text="{Binding VolatilityInput, Mode=TwoWay}"
+                                WidthRequest="120" />
+                            <Slider
+                                Maximum="200"
+                                Minimum="0.01"
+                                Value="{Binding VolatilityInput, Mode=TwoWay}" />
+                        </HorizontalStackLayout>
+
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Text="Média do retorno (%)"
+                            VerticalTextAlignment="Center" />
+                        <HorizontalStackLayout
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Spacing="8">
+                            <Entry
+                                Keyboard="Numeric"
+                                Placeholder="ex: 0.05 = 0,05%"
+                                Text="{Binding MeanReturnInput, Mode=TwoWay}"
+                                WidthRequest="120" />
+                            <Slider
+                                Maximum="50"
+                                Minimum="-50"
+                                Value="{Binding MeanReturnInput, Mode=TwoWay}" />
+                        </HorizontalStackLayout>
+
+
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Text="Tempo (dias)"
+                            VerticalTextAlignment="Center" />
+                        <HorizontalStackLayout
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Spacing="8">
+                            <Entry
+                                Keyboard="Numeric"
+                                Text="{Binding DurationDays, Mode=TwoWay}"
+                                WidthRequest="120" />
+                            <Slider
+                                Maximum="1000"
+                                Minimum="2"
+                                Value="{Binding DurationDays, Mode=TwoWay}" />
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Spacing="6"
+                            VerticalOptions="Center">
+                            <Label Text="Entradas em %" VerticalTextAlignment="Center" />
+                            <Button
+                                Padding="0"
+                                BackgroundColor="Transparent"
+                                Clicked="OnPercentHelpClicked"
+                                CornerRadius="12"
+                                HeightRequest="24"
+                                Text="?"
+                                WidthRequest="24" />
+                        </HorizontalStackLayout>
+                        <Switch
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            IsToggled="{Binding UsePercentInputs}" />
+
+
+                        <HorizontalStackLayout
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            Spacing="6"
+                            VerticalOptions="Center">
+                            <Label Text="Parâmetros anualizados" VerticalTextAlignment="Center" />
+                            <Button
+                                Padding="0"
+                                BackgroundColor="Transparent"
+                                Clicked="OnAnnualHelpClicked"
+                                CornerRadius="12"
+                                HeightRequest="24"
+                                Text="?"
+                                WidthRequest="24" />
+                        </HorizontalStackLayout>
+                        <Switch
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            IsToggled="{Binding ParametersAreAnnualized}" />
+
+                        <Label
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            Text="Nº de simulações"
+                            VerticalTextAlignment="Center" />
+                        <HorizontalStackLayout
+                            Grid.Row="6"
+                            Grid.Column="1"
+                            Spacing="8">
+                            <Label Text="{Binding Simulations}" VerticalTextAlignment="Center" />
+                            <Stepper
+                                Increment="1"
+                                Maximum="20"
+                                Minimum="1"
+                                Value="{Binding Simulations, Mode=TwoWay}" />
+                        </HorizontalStackLayout>
+
+                        <Label
+                            Grid.Row="7"
+                            Grid.Column="0"
+                            Text="Paleta de cores"
+                            VerticalTextAlignment="Center" />
+                        <Picker
+                            Grid.Row="7"
+                            Grid.Column="1"
+                            ItemsSource="{Binding PaletteOptions}"
+                            SelectedItem="{Binding SelectedPalette}" />
+
+                        <Label
+                            Grid.Row="8"
+                            Grid.Column="0"
+                            Text="Estilo da linha"
+                            VerticalTextAlignment="Center" />
+                        <Picker
+                            Grid.Row="8"
+                            Grid.Column="1"
+                            ItemsSource="{Binding LineStyleOptions}"
+                            SelectedItem="{Binding SelectedLineStyle}" />
+
+                        <Label
+                            Grid.Row="9"
+                            Grid.Column="0"
+                            Text="Espessura (px)"
+                            VerticalTextAlignment="Center" />
+                        <Grid
+                            Grid.Row="9"
+                            Grid.Column="1"
+                            ColumnDefinitions="Auto,*"
+                            ColumnSpacing="8"
+                            HorizontalOptions="Fill">
+                            <Label Text="{Binding LineThickness}" VerticalTextAlignment="Center" />
+                            <Slider
+                                Grid.Column="1"
+                                HorizontalOptions="Fill"
+                                Maximum="6"
+                                Minimum="1"
+                                Value="{Binding LineThickness, Mode=TwoWay}" />
+                        </Grid>
+
+                        <Label
+                            Grid.Row="10"
+                            Grid.Column="0"
+                            Text="Mostrar grade"
+                            VerticalTextAlignment="Center" />
+                        <Switch
+                            Grid.Row="10"
+                            Grid.Column="1"
+                            IsToggled="{Binding ShowGrid}" />
+
+
+                        <Label
+                            Grid.Row="11"
+                            Grid.Column="0"
+                            Text="Mostrar legenda"
+                            VerticalTextAlignment="Center" />
+                        <Switch
+                            Grid.Row="11"
+                            Grid.Column="1"
+                            IsToggled="{Binding ShowLegend}" />
+
+
+                        <Label
+                            Grid.Row="12"
+                            Grid.Column="0"
+                            Text="Eixo Y em moeda"
+                            VerticalTextAlignment="Center" />
+                        <Switch
+                            Grid.Row="12"
+                            Grid.Column="1"
+                            IsToggled="{Binding YAxisCurrency}" />
+
+
+                        <Button
+                            Grid.Row="13"
+                            Grid.ColumnSpan="2"
+                            Margin="0,8,0,0"
+                            Command="{Binding SimulateCommand}"
+                            Text="Simular" />
+                    </Grid>
+
+
+                    <VerticalStackLayout
+                        x:Name="ParamsNarrow"
+                        Padding="0"
+                        IsVisible="False"
+                        Spacing="10">
+
+                        <Label Text="Preço inicial" />
+                        <Slider
+                            Maximum="10000"
+                            Minimum="1"
+                            Value="{Binding InitialPrice, Mode=TwoWay}" />
+                        <Entry Keyboard="Numeric" Text="{Binding InitialPrice, Mode=TwoWay}" />
+
+                        <Label Text="Volatilidade média (%)" />
+                        <Slider
+                            Maximum="200"
+                            Minimum="0.01"
+                            Value="{Binding VolatilityInput, Mode=TwoWay}" />
+                        <Entry
+                            Keyboard="Numeric"
+                            Placeholder="ex: 2 = 2%"
+                            Text="{Binding VolatilityInput, Mode=TwoWay}" />
+
+                        <Label Text="Média do retorno (%)" />
+                        <Slider
+                            Maximum="50"
+                            Minimum="-50"
+                            Value="{Binding MeanReturnInput, Mode=TwoWay}" />
+                        <Entry
+                            Keyboard="Numeric"
+                            Placeholder="ex: 0.05 = 0,05%"
+                            Text="{Binding MeanReturnInput, Mode=TwoWay}" />
+
+
+                        <Label Text="Tempo (dias)" />
+                        <Slider
+                            Maximum="1000"
+                            Minimum="2"
+                            Value="{Binding DurationDays, Mode=TwoWay}" />
+                        <Entry Keyboard="Numeric" Text="{Binding DurationDays, Mode=TwoWay}" />
+
+
+                        <HorizontalStackLayout Spacing="6" VerticalOptions="Center">
+                            <Label Text="Entradas em %" VerticalTextAlignment="Center" />
+                            <Button
+                                Padding="0"
+                                BackgroundColor="Transparent"
+                                Clicked="OnPercentHelpClicked"
+                                CornerRadius="12"
+                                HeightRequest="24"
+                                Text="?"
+                                WidthRequest="24" />
+                            <Switch IsToggled="{Binding UsePercentInputs}" />
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Spacing="6" VerticalOptions="Center">
+                            <Label Text="Parâmetros anualizados" VerticalTextAlignment="Center" />
+                            <Button
+                                Padding="0"
+                                BackgroundColor="Transparent"
+                                Clicked="OnAnnualHelpClicked"
+                                CornerRadius="12"
+                                HeightRequest="24"
+                                Text="?"
+                                WidthRequest="24" />
+                            <Switch IsToggled="{Binding ParametersAreAnnualized}" />
+                        </HorizontalStackLayout>
+
+
+                        <Label Text="Nº de simulações" />
+                        <Stepper
+                            Increment="1"
+                            Maximum="20"
+                            Minimum="1"
+                            Value="{Binding Simulations, Mode=TwoWay}" />
+                        <Label Text="{Binding Simulations}" />
+
+
+                        <Label Text="Paleta de cores" />
+                        <Picker ItemsSource="{Binding PaletteOptions}" SelectedItem="{Binding SelectedPalette}" />
+
+                        <Label Text="Estilo da linha" />
+                        <Picker ItemsSource="{Binding LineStyleOptions}" SelectedItem="{Binding SelectedLineStyle}" />
+
+                        <Label Text="Espessura (px)" />
+                        <Slider
+                            Maximum="6"
+                            Minimum="1"
+                            Value="{Binding LineThickness, Mode=TwoWay}" />
+
+                        <HorizontalStackLayout Spacing="12">
+                            <StackLayout Orientation="Horizontal" Spacing="6">
+                                <Label Text="Grade" VerticalTextAlignment="Center" />
+                                <Switch IsToggled="{Binding ShowGrid}" />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing="6">
+                                <Label Text="Legenda" VerticalTextAlignment="Center" />
+                                <Switch IsToggled="{Binding ShowLegend}" />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing="6">
+                                <Label Text="Y moeda" VerticalTextAlignment="Center" />
+                                <Switch IsToggled="{Binding YAxisCurrency}" />
+                            </StackLayout>
+                        </HorizontalStackLayout>
+
+                        <Button
+                            Margin="0,8,0,0"
+                            Command="{Binding SimulateCommand}"
+                            Text="Simular" />
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+            </ScrollView>
+
+
+            <GraphicsView
+                x:Name="ChartView"
+                Grid.Row="1"
+                Drawable="{Binding Chart}"
+                HorizontalOptions="Fill"
+                MinimumHeightRequest="500"
+                VerticalOptions="Fill" />
+        </Grid>
+    </ScrollView>
+</ContentPage>

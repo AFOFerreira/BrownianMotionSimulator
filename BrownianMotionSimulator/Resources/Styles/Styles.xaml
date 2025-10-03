@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style x:Key="BaseLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource ColorTextPrimary}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="LineBreakMode" Value="TailTruncation" />
+    </Style>
+
+    <Style x:Key="BaseButtonStyle" TargetType="Button">
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="CornerRadius" Value="14" />
+        <Setter Property="Padding" Value="16,12" />
+        <Setter Property="Background" Value="{StaticResource PrimaryGradientBrush}" />
+        <Setter Property="BorderColor" Value="{StaticResource ColorPrimaryVariant}" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="Shadow">
+            <Setter.Value>
+                <Shadow
+                    Brush="{StaticResource PrimaryVariantBrush}"
+                    Opacity="0.35"
+                    Radius="12" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="Opacity" Value="0.92" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="{StaticResource DisabledBrush}" />
+                            <Setter Property="TextColor" Value="{StaticResource OnDisabledBrush}" />
+                            <Setter Property="BorderWidth" Value="0" />
+                            <Setter Property="Shadow">
+                                <Setter.Value>
+                                    <Shadow Opacity="0" />
+                                </Setter.Value>
+                            </Setter>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+
+
+
+    <Style TargetType="ContentPage">
+        <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+
+    <Style BasedOn="{StaticResource BaseLabelStyle}" TargetType="Label" />
+
+
+    <Style
+        x:Key="CaptionLabel"
+        BasedOn="{StaticResource BaseLabelStyle}"
+        TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource ColorTextSecondary}" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
+
+    <Style TargetType="Entry">
+        <Setter Property="TextColor" Value="{StaticResource ColorTextPrimary}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource ColorTextMuted}" />
+        <Setter Property="Background" Value="{StaticResource CardBrush}" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="HeightRequest" Value="40" />
+    </Style>
+
+
+    <Style TargetType="Picker">
+        <Setter Property="TextColor" Value="{StaticResource ColorTextPrimary}" />
+        <Setter Property="Background" Value="{StaticResource CardBrush}" />
+        <Setter Property="TitleColor" Value="{StaticResource ColorTextMuted}" />
+        <Setter Property="HeightRequest" Value="40" />
+    </Style>
+
+
+    <Style TargetType="Switch">
+        <Setter Property="OnColor" Value="{StaticResource ColorPrimary}" />
+        <Setter Property="ThumbColor" Value="White" />
+        <Setter Property="HorizontalOptions" Value="End" />
+    </Style>
+
+
+    <Style TargetType="Slider">
+        <Setter Property="MinimumTrackColor" Value="{StaticResource ColorPrimary}" />
+        <Setter Property="MaximumTrackColor" Value="{StaticResource ColorBorder}" />
+        <Setter Property="ThumbColor" Value="{StaticResource ColorPrimary}" />
+        <Setter Property="HeightRequest" Value="28" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+    </Style>
+
+
+    <Style TargetType="Stepper">
+        <Setter Property="Background" Value="{StaticResource CardBrush}" />
+        <Setter Property="HeightRequest" Value="34" />
+    </Style>
+
+    <Style BasedOn="{StaticResource BaseButtonStyle}" TargetType="Button" />
+
+
+    <Style
+        x:Key="AccentButton"
+        BasedOn="{StaticResource BaseButtonStyle}"
+        TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource PrimaryGradientBrush}" />
+    </Style>
+
+    <Style
+        x:Key="SecondaryButton"
+        BasedOn="{StaticResource BaseButtonStyle}"
+        TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource CardBrush}" />
+        <Setter Property="TextColor" Value="{StaticResource ColorTextPrimary}" />
+        <Setter Property="BorderColor" Value="{StaticResource ColorBorder}" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="Shadow">
+            <Setter.Value>
+                <Shadow Opacity="0.12" Radius="6" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CardContainer" TargetType="ContentView">
+        <Setter Property="Background" Value="{StaticResource CardBrush}" />
+        <Setter Property="Padding" Value="12" />
+    </Style>
+
+    <Style TargetType="GraphicsView">
+        <Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
+    </Style>
+
+</ResourceDictionary>

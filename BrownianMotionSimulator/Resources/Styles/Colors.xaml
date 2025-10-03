@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Color x:Key="ColorPrimary">#7C3AED</Color>
+    <Color x:Key="ColorPrimaryVariant">#9F67FF</Color>
+
+    <Color x:Key="ColorBackground">#0F1115</Color>
+    <Color x:Key="ColorSurface">#151922</Color>
+    <Color x:Key="ColorCard">#1A2030</Color>
+    <Color x:Key="ColorBorder">#2A2F3A</Color>
+
+    <Color x:Key="ColorTextPrimary">#EAEAEA</Color>
+    <Color x:Key="ColorTextSecondary">#B9C0CD</Color>
+    <Color x:Key="ColorTextMuted">#8E98A8</Color>
+
+    <Color x:Key="ColorDisabled">#222836</Color>
+    <Color x:Key="ColorOnDisabled">#6F7785</Color>
+
+    <Color x:Key="ColorSuccess">#22C55E</Color>
+    <Color x:Key="ColorWarning">#F59E0B</Color>
+    <Color x:Key="ColorDanger">#EF4444</Color>
+    <Color x:Key="ColorInfo">#3B82F6</Color>
+
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource ColorBackground}" />
+    <SolidColorBrush x:Key="SurfaceBrush" Color="{StaticResource ColorSurface}" />
+    <SolidColorBrush x:Key="CardBrush" Color="{StaticResource ColorCard}" />
+    <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource ColorBorder}" />
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource ColorTextPrimary}" />
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource ColorTextSecondary}" />
+    <SolidColorBrush x:Key="DisabledBrush" Color="{StaticResource ColorDisabled}" />
+    <SolidColorBrush x:Key="OnDisabledBrush" Color="{StaticResource ColorOnDisabled}" />
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource ColorPrimary}" />
+    <SolidColorBrush x:Key="PrimaryVariantBrush" Color="{StaticResource ColorPrimaryVariant}" />
+
+    <LinearGradientBrush x:Key="PrimaryGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0.0" Color="{StaticResource ColorPrimary}" />
+        <GradientStop Offset="1.0" Color="{StaticResource ColorPrimaryVariant}" />
+    </LinearGradientBrush>
+
+</ResourceDictionary>
