@@ -47,17 +47,6 @@ Simulador interativo de **Movimento Browniano Geométrico (GBM)** construído em
   ```bash
   dotnet workload install maui
   ```
-
-### Rodando
-- **Visual Studio 2022** (Windows/macOS): Abra a solução e execute no destino desejado (Android, iOS*, Windows, macOS*).
-- **CLI**:
-  ```bash
-  dotnet build
-  dotnet run -f net8.0-windows10.0.19041.0  =
-  ```
-
-\* iOS/macOS exigem ambiente Apple configurado.
-
 ---
 
 ## 🕹️ Uso
@@ -101,6 +90,3 @@ Simulador interativo de **Movimento Browniano Geométrico (GBM)** construído em
 
 ---
 
-## 📄 Licença
-
-Defina a licença do projeto (ex.: MIT) e inclua um arquivo `LICENSE` se desejar.
